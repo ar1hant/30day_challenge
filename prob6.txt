@@ -1,23 +1,11 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
 string gcdOfStrings(string str1, string str2) {
     int n = str1.length(), m = str2.length(), sub_len;
     string ans, s1, s2;
     int x, y;
-    if(n < m){
-    for(int i = 1;i <= m;i++){
-        string s = str2.substr(0, i);
-        x = n / i;
-        y = m / i;
-        s1 = "";
-        s2 = "";
-        while(x--)
-        s1 += s;
-        while(y--)
-        s2 += s;
-        if(s1 == str1 && s2 == str2)
-        ans = s;
-    }
-    }
-    else{
     for(int i = 1;i <= n;i++){
         string s = str1.substr(0, i);
         x = n / i;
@@ -31,15 +19,16 @@ string gcdOfStrings(string str1, string str2) {
         if(s1 == str1 && s2 == str2)
         ans = s;
     }
-    }
-    
     return ans;
 }
 
-//Optimized solution :
-
-//string gcdOfStrings(string str1, string str2) {
-//    if((str1 + str2) == (str2 + str1))
-//    return str1.substr(0, gcd(str1.length(), str2.length()));
-//    return "";
-//}
+int main(){
+    string s1, s2;
+    cin >> s1;
+    cin >> s2;
+    if(s1.length() < s2.length())
+        cout << gcdOfStrings(s2, s1);
+    else
+        cout << gcdOfStrings(s1, s2);
+    return 0;
+}
