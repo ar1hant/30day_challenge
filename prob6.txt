@@ -22,6 +22,10 @@ string gcdOfStrings(string str1, string str2) {
     return ans;
 }
 
+// Time compleity of this program O(n ^ 2)
+// Extra Space compleity of this program O(n)
+// here n is str1.length()
+
 int main(){
     string s1, s2;
     cin >> s1;
