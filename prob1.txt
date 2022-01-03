@@ -1,11 +1,4 @@
-//Initial Template for C++
 #include <bits/stdc++.h>
-#include <unordered_map>
-using namespace std;
-
-
- // } Driver Code Ends
-//User function Template for C++
 
 class Solution{
   public:
@@ -13,9 +6,9 @@ class Solution{
         map<vector<int>, vector<string>> mp;
         vector<vector<string>> res;
         
-        for(string s : string_list){
-            vector<int> v(26, 0);
-            for(char ch : s)
+        for(string s : string_list){  // O(string_list.size())
+            vector<int> v(26, 0); // instead of sorting which will takes up O(s.size() * log(s.size())) time this method helps us to achieve it in O(s.size()) time complexity
+            for(char ch : s)      // O(s.size())
                 v[ch - 'a']++;
             
             auto itr = mp.find(v);
@@ -32,7 +25,8 @@ class Solution{
     }
 };
 
-// { Driver Code Starts.
+// Time compleity of this program O(N * M) , where N -> size of sting_list and M -> size of string in string_list.
+// Extra Space compleity of this program O(N * M) , where N -> size of sting_list and M -> size of string in string_list.
 
 int main()
 {
@@ -60,4 +54,3 @@ int main()
 
     return 0;
 }
-  // } Driver Code Ends
