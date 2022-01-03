@@ -19,7 +19,7 @@ int main() {
 		s.insert(arr[i]);
 	}
 	
-	for(auto it = s.begin();it != s.end();it++)
+	for(auto it = s.begin();it != s.end();it++)   // the 10 maximum numbers of the list of 10 million entries in ascendingly sorted order.
 		cout << *it << " ";
 	return 0;
 }
