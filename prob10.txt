@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n = 10000000;
+	int arr[n];
+	set<int> s;
+	for(int i = 0;i < n;i++){
+		cin >>arr[i];
+		if(s.size() < 10)
+			s.insert(arr[i]);
+	}
+	
+	for(int i = 10;i < n;i++){
+		auto it = s.begin();
+		if(arr[i] <= *it || (s.find(arr[i])) != s.end())
+			continue;
+		s.erase(*it);
+		s.insert(arr[i]);
+	}
+	
+	for(auto it = s.begin();it != s.end();it++)
+		cout << *it << " ";
+	return 0;
+}
+
+// Time compleity of this program O(n)
+// Extra Space compleity of this program O(1)
