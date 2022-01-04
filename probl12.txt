@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class Solution {
+  public:
+    long long squaresInChessBoard(long long n) {
+        return (n * (n + 1) * ((2 * n) + 1)) / 6;
+    }
+};
+
+// Time compleity of this program O(1)
+// Extra Space compleity of this program O(1)
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        long long n;
+        cin>>n;
+        Solution ob;
+        cout << ob.squaresInChessBoard(n) << endl;
+    }
+    return 0;
+}
