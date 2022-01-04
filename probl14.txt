@@ -16,6 +16,9 @@ int minSubArrayLen(int target, vector<int>& nums) {
     return (res == INT_MAX ) ? 0 : res;
 }
 
+// Time compleity of this program O(n)
+// Extra Space compleity of this program O(1)
+
 int main(){
   int n, target, x;
   cin >> n >> target;
