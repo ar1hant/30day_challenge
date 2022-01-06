@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+string gcdOfStrings(string str1, string str2) {
+    int n = str1.length(), m = str2.length(), sub_len;
+    string ans, s1, s2;
+    int x, y;
+    for(int i = 1;i <= n;i++){
+        string s = str1.substr(0, i);
+        x = n / i;
+        y = m / i;
+        s1 = "";
+        s2 = "";
+        while(x--)
+        s1 += s;
+        while(y--)
+        s2 += s;
+        if(s1 == str1 && s2 == str2)
+        ans = s;
+    }
+    return ans;
+}
+
+// Time compleity of this program O(n ^ 2)
+// Extra Space compleity of this program O(n)
+// here n is str1.length()
+
+int main(){
+    string s1, s2;
+    cin >> s1;
+    cin >> s2;
+    if(s1.length() < s2.length())
+        cout << gcdOfStrings(s2, s1);
+    else
+        cout << gcdOfStrings(s1, s2);
+    return 0;
+}
