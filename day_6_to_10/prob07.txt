@@ -27,8 +27,8 @@ class Solution {
 		}
 };
 
-// Time compleity of this program O(n)
-// Extra Space compleity of this program O(1)
+//Time compleity of this program O(n)
+//Extra Space compleity of this program O(1)
 
 int main(){
 	int tc;
