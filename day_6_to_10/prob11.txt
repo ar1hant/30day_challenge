@@ -148,7 +148,7 @@ void deleteTree(Node** node_ref)
 {  
     _deleteTree(*node_ref);  
     *node_ref = NULL;  
-}  
+}
 
 int main() {
     int tc;
