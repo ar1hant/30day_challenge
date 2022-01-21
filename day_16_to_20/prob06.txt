@@ -1,0 +1,55 @@
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+vector<string> AllParenthesis(int n) ;
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+// N is the number of pairs of parentheses
+// Return list of all combinations of balanced parantheses
+
+void solve(int n, int start, int end, string s, vector<string> &res){
+    if(end == n){
+        res.push_back(s);
+        return;
+    }
+    if(start > end)
+        solve(n, start, end + 1, s + ')', res);
+    if(start < n)
+        solve(n, start + 1, end, s + '(', res);
+}
+
+class Solution
+{
+    public:
+    vector<string> AllParenthesis(int n) {
+        vector<string> res;
+        int start = 0, end = 0;
+        solve(n, start, end, "", res);
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
+
+int main() 
+{ 
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		Solution ob;
+		vector<string> result = ob.AllParenthesis(n); 
+		sort(result.begin(),result.end());
+		for (int i = 0; i < result.size(); ++i)
+			cout<<result[i]<<"\n";
+	}
+	return 0; 
+} 
+  // } Driver Code Ends
