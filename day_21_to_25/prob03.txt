@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int MAX_DIGITS = 5;
+
+int missingNumber(const string& str);
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string str;
+        cin>>str;
+        cout << missingNumber(str)<<endl;
+    }
+	return 0;
+}
+// } Driver Code Ends
+
+long long util(string s){
+    long long x = 0;
+    for(int i = 0;i < s.size();i++)
+        x = x * 10 + s[i] - '0';
+    return x;
+}
+
+/* You are required to complete this function
+which return the required missing number
+if present else return -1*/
+int missingNumber(const string& s){
+    int n = s.length();
+    for(int len = 0;len < 6;len++){
+        string t;
+        int l = len + 1, i = 0;
+        while(i < n && l--)
+            t += s[i++];
+        long long pre = util(t), count = 0, j = i, miss;
+        bool flag = 0;
+        t = "";
+        while(j < n){
+            t += s[j++];
+            long long r = util(t);
+            if(pre + 1 == r){
+                pre = r;
+                t = "";
+            }
+            else if(pre + 2 == r){
+                count++;
+                miss = pre + 1;
+                t = "";
+            }
+            else if(pre < r)
+                flag = 1;
+        }
+        if(!flag && count == 1)
+            return miss;
+    }
+    return -1;
+}
