@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numberOfBoomerangs(vector<vector<int>>& points) {
+        int n = points.size();
+        if(n < 3)
+            return 0;
+        unordered_map<int, int> mp;
+        int X, Y, ans = 0;
+        for(int i = 0;i < n;i++){
+            for(int j = 0;j < n;j++){
+                if(i == j)
+                    continue;
+                X = pow(points[i][0] - points[j][0], 2);
+                Y = pow(points[i][1] - points[j][1], 2);
+                mp[X + Y]++;
+            }
+            for(auto &it : mp)
+                ans += it.second * (it.second - 1);
+            mp.clear();
+        }
+        return ans;
+    }
+};
