@@ -1,0 +1,33 @@
+void dfs(int i, int j, int n, int m, vector<vector<int>> &heights,vector<vector<int>> &dp, int pre){
+    if(i < 0 || j < 0 || i >= n || j >= m || dp[i][j] || heights[i][j] < pre)
+        return;
+    dp[i][j] = 1;
+    dfs(i + 1, j, n, m, heights, dp, heights[i][j]);
+    dfs(i, j + 1, n, m, heights, dp, heights[i][j]);
+    dfs(i - 1, j, n, m, heights, dp, heights[i][j]);
+    dfs(i, j - 1, n, m, heights, dp, heights[i][j]);
+}
+
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        int n = heights.size();
+        int m = heights[0].size();
+        vector<vector<int>> dp(n,vector<int>(m, 0));
+        vector<vector<int>> dp2(n,vector<int>(m, 0));
+        vector<vector<int>> res;
+        for(int i = 0;i < n;i++){
+            dfs(i, 0, n, m, heights, dp, -1);
+            dfs(i, m - 1, n, m, heights, dp2, -1);
+        }
+        for(int i = 0;i < m;i++){
+            dfs(0, i, n, m, heights, dp, -1);
+            dfs(n - 1, i, n, m, heights, dp2, -1);
+        }
+        for(int i = 0;i < n;i++)
+            for(int j = 0;j < m;j++)
+                if(dp[i][j] && dp2[i][j])
+                    res.push_back({i, j});
+        return res;
+    }
+};
