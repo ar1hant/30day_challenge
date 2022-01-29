@@ -1,0 +1,28 @@
+class Solution {
+private:
+    vector<int> res;
+public:
+    bool dfs(vector<vector<int>> &adj, int idx, vector<bool> &visited, vector<bool> &dp){
+        visited[idx] = dp[idx] = 1;
+        for(int x : adj[idx])
+            if(dp[x] ||(visited[x] == 0 && dfs(adj, x, visited, dp)))
+                return 1;
+        dp[idx] = 0;
+        res.push_back(idx);
+        return 0;
+    }
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        res.clear();
+        vector<vector<int>> adj(numCourses);
+        for(vector<int> v : prerequisites)
+            adj[v[1]].push_back(v[0]);
+        vector<bool> visited(numCourses, 0), dp(numCourses, 0);
+        for(int i = 0;i < numCourses;i++)
+            if(!visited[i] && dfs(adj, i, visited, dp))
+                return {};
+        int size = res.size();
+        for(int i = 0;i < size / 2;i++)
+            swap(res[i], res[size - i - 1]);
+        return res;
+    }
+};
