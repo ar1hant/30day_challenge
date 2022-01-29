@@ -1,0 +1,20 @@
+Node* solve(vector<vector<int>> &grid, int idx1, int idx2, int n){
+    int sum = 0;
+    for(int i = idx1;i < idx1 + n;i++)
+            sum += accumulate(grid[i].begin() + idx2, grid[i].begin() + idx2 + n, 0);
+    Node* res;
+    if(sum == 0)
+        return (new Node(0, 1));
+    else if(sum == (n * n))
+        return (new Node(1, 1));
+    n /= 2;
+    return (new Node(0, 0, solve(grid, idx1, idx2, n), solve(grid, idx1, idx2 + n, n), solve(grid, idx1 + n, idx2, n), solve(grid, idx1 + n, idx2 + n, n)));
+}
+
+class Solution {
+public:
+    Node* construct(vector<vector<int>>& grid) {
+        int n = grid.size();
+        return solve(grid, 0, 0, n);
+    }
+};
